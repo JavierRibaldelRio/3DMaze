@@ -6,25 +6,26 @@ public class FisicaProyectil : MonoBehaviour
 {
     public float Fuerza;
 
-    Rigidbody p_Rigidbody;
+    GameObject disparador;
 
-    Move p_Move;
+    Rigidbody p_Rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        //Coger el script de movimiento
-
-        p_Move = GameObject.Find("Personaje").GetComponent<Move>();
-
+        
         //Cojer el componente RigidBody
 
         p_Rigidbody = GetComponent<Rigidbody>();
 
+        //coger disparador
+
+        disparador = GameObject.Find("Disparador");
+
         //Añadir una fuerza al objeto
 
-        p_Rigidbody.AddForce(Vector3.forward * Fuerza /*Fuerza*/ * Time.deltaTime, ForceMode.Impulse);
+        p_Rigidbody.AddForce(new Vector3(0,0,disparador.transform.position.z) * Fuerza /*Fuerza*/ * Time.deltaTime, ForceMode.Impulse);
     }
 
 
